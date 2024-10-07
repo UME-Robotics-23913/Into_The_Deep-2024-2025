@@ -73,7 +73,7 @@ public class BasicTeleOp extends LinearOpMode {
             robot.frontLeft.setPower(frontLeftPower);
             robot.frontRight.setPower(frontRightPower);
 
-            robot.arm.setPower(armPower);
+            //robot.arm.setPower(armPower);
 
         }
     }
