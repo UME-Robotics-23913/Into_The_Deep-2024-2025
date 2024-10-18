@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 @TeleOp(name="Basic: TeleOpMode", group="TeleOp")
@@ -13,13 +12,14 @@ public class BasicTeleOp extends LinearOpMode {
     private double backRightPower;
     private double frontLeftPower;
     private double frontRightPower;
-    private double armPower;
+    private double intakePower;
+
 
     private double drive;
     private double strafe;
     private double turn;
 
-
+    // private double arm;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -29,11 +29,13 @@ public class BasicTeleOp extends LinearOpMode {
         robot.initialize(this.hardwareMap);
 
         waitForStart();
-        // drive is controlled by up and down, strafe and turn are controlled by left and right.
+         // drive is controlled by up and down, strafe and turn are controlled by left and right.
         while(opModeIsActive()) {
             drive = gamepad1.left_stick_y;
             strafe = gamepad1.left_stick_x;
             turn = gamepad1.right_stick_x;
+
+            // armPower = gamepad1.right_stick_x;
 
             frontLeftPower = drive - strafe - turn;
             frontRightPower = drive + strafe + turn;
@@ -49,6 +51,8 @@ public class BasicTeleOp extends LinearOpMode {
                             Math.max(
                                     Math.abs(frontLeftPower),
                                     Math.abs(frontRightPower)
+
+                                    // Math.abs(armPower)
                             )
                     )
             );
@@ -59,21 +63,23 @@ public class BasicTeleOp extends LinearOpMode {
             frontRightPower /= max;
             frontLeftPower /= max;
 
-            if(gamepad1.a)
-                armPower = 1;
+            // armPower /= max;
 
-            if(gamepad1.b)
-                armPower = -1;
+            if(gamepad1.right_bumper)
+                intakePower = 1;
 
-            if (!gamepad1.a && !gamepad1.b)
-                armPower = 0;
+            if(gamepad1.left_bumper)
+                intakePower = -1;
+
+            if (!gamepad1.right_bumper && !gamepad1.left_bumper)
+                intakePower = 0;
 
             robot.backLeft.setPower(backLeftPower);
             robot.backRight.setPower(backRightPower);
             robot.frontLeft.setPower(frontLeftPower);
             robot.frontRight.setPower(frontRightPower);
 
-            //robot.arm.setPower(armPower);
+            robot.intake.setPower(intakePower);
 
         }
     }
