@@ -8,18 +8,10 @@ public class BasicTeleOp extends LinearOpMode {
 
     private Hardware robot = new Hardware();
 
-    private double backLeftPower;
-    private double backRightPower;
-    private double frontLeftPower;
-    private double frontRightPower;
+    private double backLeftPower, backRightPower, frontLeftPower, frontRightPower, drive, strafe, turn;
+
     // private double intakePower;
     // private double armPower;
-
-
-    private double drive;
-    private double strafe;
-    private double turn;
-
     // private double arm;
 
     @Override
@@ -33,6 +25,7 @@ public class BasicTeleOp extends LinearOpMode {
          // drive is controlled by up and down, strafe and turn are controlled by left and right.
         while(opModeIsActive()) {
             drive =  - gamepad1.left_stick_y;
+
             strafe = gamepad1.left_stick_x;
             turn = gamepad1.right_stick_x;
 
@@ -59,10 +52,6 @@ public class BasicTeleOp extends LinearOpMode {
             );
 
             // abs = absolute values
-            backLeftPower = 0.3;
-            backRightPower = 0.3;
-            frontRightPower = 0.3;
-            frontLeftPower = 0.3;
 
             // armPower /= max;
 
@@ -86,10 +75,10 @@ public class BasicTeleOp extends LinearOpMode {
                 // armPower = 0;
 
 
-            robot.backLeft.setPower(0.3);
-            robot.backRight.setPower(0.3);
-            robot.frontLeft.setPower(0.3);
-            robot.frontRight.setPower(0.3);
+            robot.backLeft.setPower(backLeftPower * 0.5);
+            robot.backRight.setPower(backRightPower * 0.5);
+            robot.frontLeft.setPower(frontLeftPower * 0.5);
+            robot.frontRight.setPower(frontRightPower * 0.5);
 
             // robot.intake.setPower(intakePower);
 
