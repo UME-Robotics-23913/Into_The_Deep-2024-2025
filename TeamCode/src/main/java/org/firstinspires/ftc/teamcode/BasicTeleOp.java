@@ -31,10 +31,10 @@ public class BasicTeleOp extends LinearOpMode {
 
             // armPower = gamepad1.right_stick_x;
 
-            frontLeftPower = (drive - strafe - turn)*.5;
-            frontRightPower = (drive + strafe + turn)*.5;
-            backLeftPower = (drive + strafe - turn)*.5;
-            backRightPower = (drive - strafe + turn)*.5;
+            frontLeftPower = (drive - strafe - turn);
+            frontRightPower = (drive + strafe + turn);
+            backLeftPower = (drive + strafe - turn);
+            backRightPower = (drive - strafe + turn);
             // all the wheels and their power
             double max = Math.max(
                  1,
@@ -75,10 +75,10 @@ public class BasicTeleOp extends LinearOpMode {
                 // armPower = 0;
 
 
-            robot.backLeft.setPower(backLeftPower * 0.5);
-            robot.backRight.setPower(backRightPower * 0.5);
-            robot.frontLeft.setPower(frontLeftPower * 0.5);
-            robot.frontRight.setPower(frontRightPower * 0.5);
+            robot.backLeft.setPower(backLeftPower * 0.7);
+            robot.backRight.setPower(backRightPower * 0.7);
+            robot.frontLeft.setPower(frontLeftPower * 0.7);
+            robot.frontRight.setPower(frontRightPower * 0.7);
 
             // robot.intake.setPower(intakePower);
 
